@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t ademoladebayo/complexweb-react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t adereactive/complexweb-react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true ademoladebayo/complexweb-react-test npm run test
+  - docker run -e CI=true adereactive/complexweb-react-test npm run test
 
 after_success:
-  - docker build -t ademoladebayo/multi-client ./client
-  - docker build -t ademoladebayo/multi-nginx  ./nginx
-  - docker build -t ademoladebayo/multi-server ./server
-  - docker build -t ademoladebayo/multi-worker ./worker
+  - docker build -t adereactive/multi-client ./client
+  - docker build -t adereactive/multi-nginx  ./nginx
+  - docker build -t adereactive/multi-server ./server
+  - docker build -t adereactive/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push ademoladebayo/multi-client
-  - docker push ademoladebayo/multi-nginx
-  - docker push ademoladebayo/multi-server
-  - docker push ademoladebayo/multi-worker
+  - docker push adereactive/multi-client
+  - docker push adereactive/multi-nginx
+  - docker push adereactive/multi-server
+  - docker push adereactive/multi-worker
